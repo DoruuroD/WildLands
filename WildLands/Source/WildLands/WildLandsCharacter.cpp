@@ -129,7 +129,7 @@ void AWildLandsCharacter::Tick(float DeltaSeconds)
 						}
 						
 						//scouting
-						MyGamemode->GridRef->SpawnMissingNeightbours(NextTile->AreColliding, NextTile->Neightbours, NextTile);
+						//MyGamemode->GridRef->SpawnMissingNeightbours(NextTile->AreColliding, NextTile->Neightbours, NextTile);
 					}
 				}
 			}

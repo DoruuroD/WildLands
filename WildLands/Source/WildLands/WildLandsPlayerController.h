@@ -11,7 +11,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateCharacterListView);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FObjectUnderTheCursor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSpawnCharacter);
 
-
 UENUM()
 enum ESelectionState {
 	Null=0,
@@ -41,7 +40,7 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "event")
 	FUpdateCharacterListView UpdateCharacterListView;
-	
+
 	// UI
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<class UUserWidget> HUDOverlayAsset;
@@ -93,7 +92,7 @@ public:
 	void TurnOffCharacterWidget();
 
 	UFUNCTION(BlueprintCallable)
-	void SpawnMyCharacter();
+	void SpawnMyCharacter(enum ECharacterType CharacterType);
 	UFUNCTION()
 	TArray<ATile*> FindRoad(ATile* begining, ATile* end);
 protected:

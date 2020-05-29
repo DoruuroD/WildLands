@@ -109,9 +109,9 @@ void AWildLandsPlayerController::TurnOffCharacterWidget()
 		CharacterWidget->RemoveFromViewport();
 	}
 }
-void AWildLandsPlayerController::SpawnMyCharacter()
+void AWildLandsPlayerController::SpawnMyCharacter(ECharacterType CharacterType)
 {
-	SelectedTile->SpawnCharacterOnTile();
+	SelectedTile->SpawnCharacterOnTile(CharacterType);
 	Select.Broadcast();
 }
 TArray<ATile*> AWildLandsPlayerController::FindRoad(ATile* begining, ATile* end)

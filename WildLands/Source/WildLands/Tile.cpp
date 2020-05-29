@@ -12,6 +12,8 @@
 #include "Containers/Set.h"
 #include "RoadIndicator.h"
 #include "Scout.h"
+#include "Builder.h"
+
 
 // Sets default values
 ATile::ATile()
@@ -410,7 +412,7 @@ void ATile::SetBIOM(int32 number)
 	
 }
 
-void ATile::SpawnCharacterOnTile()
+void ATile::SpawnCharacterOnTile(ECharacterType CharacterType)
 {
 	FActorSpawnParameters spawnParams;
 
@@ -420,17 +422,44 @@ void ATile::SpawnCharacterOnTile()
 	tempT.SetLocation(thisLocation);
 	tempT.SetScale3D(FVector(0.4, 0.4, 0.4));
 
-	AScout* Scout = GetWorld()->SpawnActor<AScout>(ScoutBP, tempT, spawnParams);
-	
-	if (Scout)
+
+	switch (CharacterType)
 	{
-		//Cast<AWildLandsCharacter>(Scout)->SetActorLocation(thisLocation);
-		Scout->SetActorLocation(thisLocation);
-		WildLandsCharacters.Add(Scout);
-		Scout->CharacterTile = this;
+		case ECharacterType::Builder:
+		{
+			ABuilder* Builder = GetWorld()->SpawnActor<ABuilder>(BuilderBP, tempT, spawnParams);
+			if (Builder)
+			{
+				Builder->SetActorLocation(thisLocation);
+				WildLandsCharacters.Add(Builder);
+				Builder->CharacterTile = this;
+			}
+			else
+				UE_LOG(LogTemp, Warning, TEXT("AWildLandsCharacter spawn error"));
+			break;
+		}
+		case ECharacterType::Scout:
+		{
+			AScout* Scout = GetWorld()->SpawnActor<AScout>(ScoutBP, tempT, spawnParams);
+			if (Scout)
+			{
+				Scout->SetActorLocation(thisLocation);
+				WildLandsCharacters.Add(Scout);
+				Scout->CharacterTile = this;
+			}
+			else
+				UE_LOG(LogTemp, Warning, TEXT("AWildLandsCharacter spawn error"));
+			break;
+		}
+		case ECharacterType::Settler:
+		{
+			break;
+		}
+		case ECharacterType::Warrior:
+		{
+			break;
+		}
 	}
-	else 
-		UE_LOG(LogTemp, Warning, TEXT("AWildLandsCharacter spawn error"));
 }
 AWildLandsCharacter* ATile::GetFirstCharacter()
 {

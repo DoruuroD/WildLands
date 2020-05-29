@@ -15,4 +15,8 @@ class WILDLANDS_API AScout : public AWildLandsCharacter
 	GENERATED_BODY()
 public:
 	AScout();
+	virtual void BeginPlay() override;
+
+	UFUNCTION(BlueprintCallable)
+	void ScoutSurroundings();
 };

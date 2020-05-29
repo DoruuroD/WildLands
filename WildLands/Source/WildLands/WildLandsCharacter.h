@@ -8,9 +8,10 @@
 
 DECLARE_DELEGATE_OneParam(FMoveCharacter, class ATile*);
 
-UENUM()
+UENUM(BlueprintType)
 enum ECharacterType {
 	Scout = 0,
+	Builder,
 	Settler,
 	Warrior,
 	Unknown
@@ -50,6 +51,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class AWildLandsPlayerController* MyPlayerController;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Variable)
+	class AWildLandsGameMode* MyGamemode;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool IsMoving;
 
@@ -77,8 +81,7 @@ public:
 
 private:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Variable, meta = (AllowPrivateAccess = "true"))
-	class AWildLandsGameMode* MyGamemode;
+
 
 	UPROPERTY(VisibleAnywhere)
 	class ATile* NextTile;

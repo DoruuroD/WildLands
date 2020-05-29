@@ -78,6 +78,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = Variable)
 	TSubclassOf<class AScout> ScoutBP;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = Variable)
+	TSubclassOf<class ABuilder> BuilderBP;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	TSet<class AWildLandsCharacter*> WildLandsCharacters;
 
@@ -123,7 +126,7 @@ public:
 	UFUNCTION()
 		void ChangeMaterial(class UMaterial* material);
 	UFUNCTION()
-		void SpawnCharacterOnTile();
+		void SpawnCharacterOnTile(enum ECharacterType CharacterType);
 
 	FORCEINLINE float GetTileNoise() { return TileNoise; }
 	FORCEINLINE void SetTileNoise(float noise) { TileNoise = noise; }
