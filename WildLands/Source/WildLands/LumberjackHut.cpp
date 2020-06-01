@@ -3,7 +3,7 @@
 
 #include "LumberjackHut.h"
 
-ALumberjackHut::ALumberjackHut()
+ULumberjackHut::ULumberjackHut()
 {
 	BuildingType = EBuildingType::Lumberjack;
 }

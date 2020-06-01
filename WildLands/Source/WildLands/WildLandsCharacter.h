@@ -14,7 +14,7 @@ enum ECharacterType {
 	Builder,
 	Settler,
 	Warrior,
-	Unknown
+	UnknownCharacter
 };
 UCLASS(Blueprintable)
 class AWildLandsCharacter : public ACharacter

@@ -7,17 +7,15 @@
 #include "Building.h"
 #include "Citizen.h"
 // Sets default values
-ABuilding::ABuilding()
+UBuilding::UBuilding()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+//	PrimaryActorTick.bCanEverTick = true;
 
-	BuildingMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BuildingMesh"));
-	RootComponent = BuildingMesh;
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> StaticMesh(TEXT("staticmesh'/game/meshes/lumberjackhut.lumberjackhut'"));
-	if (StaticMesh.Succeeded())
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> TempStaticMesh(TEXT("staticmesh'/game/meshes/lumberjackhut.lumberjackhut'"));
+	if (TempStaticMesh.Succeeded())
 	{
-		BuildingMesh->SetStaticMesh(StaticMesh.Object);
+		this->SetStaticMesh(TempStaticMesh.Object);
 	}
 	else
 	{
@@ -27,20 +25,22 @@ ABuilding::ABuilding()
 }
 
 // Called when the game starts or when spawned
-void ABuilding::BeginPlay()
+void UBuilding::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void ABuilding::Tick(float DeltaTime)
+void UBuilding::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::Tick(DeltaTime);
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	// ...
 }
 
-void ABuilding::AddWorkerToBuilding(ACitizen* Worker)
+
+void UBuilding::AddWorkerToBuilding(ACitizen* Worker)
 {
 	if (WorkersInBuilding.Num() != MaximumWorkerCapacity)
 	{
@@ -49,7 +49,7 @@ void ABuilding::AddWorkerToBuilding(ACitizen* Worker)
 	// return bool?
 }
 UFUNCTION()
-void ABuilding::RemoveWorkerFromBuilding(class ACitizen* Worker)
+void UBuilding::RemoveWorkerFromBuilding(class ACitizen* Worker)
 {
 	if (WorkersInBuilding.Num() != 0 )
 	{

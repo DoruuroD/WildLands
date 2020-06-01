@@ -52,25 +52,25 @@ public:
 	class UStaticMeshComponent* TileMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent* CentralSlot;
+	class UTileMesh* CentralSlot;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent* Slot0;
+	class UTileMesh* Slot0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent * Slot1;
+	class UTileMesh * Slot1;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent * Slot2;
+	class UTileMesh * Slot2;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent * Slot3;
+	class UTileMesh * Slot3;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent * Slot4;
+	class UTileMesh * Slot4;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent * Slot5;
+	class UTileMesh * Slot5;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = Variable)
 	class UMaterial* TileMaterial;

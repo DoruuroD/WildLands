@@ -23,6 +23,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Variables)
 	class ATile* MainTile;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class UPlayerVillage> PlayerVillageBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class ULumberjackHut> LumberjackHutBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class UResource> ResourceBP;
+
 	UFUNCTION()
 	void SetGrid(class AGrid* grid);
 

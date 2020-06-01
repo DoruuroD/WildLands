@@ -27,7 +27,7 @@
 
 AWildLandsCharacter::AWildLandsCharacter()
 {
-	CharacterType = ECharacterType::Unknown;
+	CharacterType = ECharacterType::UnknownCharacter;
 	// Set size for player capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 

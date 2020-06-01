@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "TileMesh.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Building.generated.h"
@@ -11,31 +12,30 @@ enum EBuildingType {
 	Lumberjack = 0,
 	Mine,
 	Field,
-	Unknown
+	Village,
+	UnknownBuilding
 };
 
 UCLASS()
-class WILDLANDS_API ABuilding : public AActor
+class WILDLANDS_API UBuilding : public UTileMesh
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ABuilding();
+	UBuilding();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	TEnumAsByte<EBuildingType> BuildingType = EBuildingType::Unknown;
+	TEnumAsByte<EBuildingType> BuildingType = EBuildingType::UnknownBuilding;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent* BuildingMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	TSet<class ACitizen*> WorkersInBuilding;
@@ -57,6 +57,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	bool IsWorking = false;
+
 
 	UFUNCTION()
 	void AddWorkerToBuilding(class ACitizen* Worker);

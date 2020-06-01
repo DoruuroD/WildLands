@@ -8,7 +8,9 @@
 #include "RoadIndicator.h"
 #include "Engine/StaticMesh.h"
 #include "CoreUObject/Public/UObject/ConstructorHelpers.h"
-
+#include "UObject/UObjectGlobals.h"
+#include "Resource.h"
+#include "UObject\Object.h"
 FastNoise myNoise;
 // Sets default values
 AGrid::AGrid()
@@ -326,64 +328,249 @@ UMaterial* AGrid::ChooseMaterialByNoise(float noise, int32& number)
 }
 void AGrid::SetMeshes(class ATile* tile)
 {
-	/*	 
-	Tree
-	Rock
-	moss;
-	Flower;
-	SmallRock;
-	SmallTree;
-	*/
-
+	FVector tempRelativeLocation;
 	switch (tile->Biom)
 	{
 		case Grass:
 			if (!tile->IsMainBase)
 			{ 
+				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
+				tile->CentralSlot->MeshType = EMeshType::Resource;
+				tile->CentralSlot = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->SetStaticMesh(Bush);
+				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+				tile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
 			}
+
+			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
+			tile->Slot0->MeshType = EMeshType::Resource;
+			tile->Slot0 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(Flower);
+			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot0->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
+			tile->Slot1->MeshType = EMeshType::Resource;
+			tile->Slot1 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot1->RegisterComponent();
 			tile->Slot1->SetStaticMesh(Flower);
+			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot1->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
+			tile->Slot2->MeshType = EMeshType::Resource;
+			tile->Slot2 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot2->RegisterComponent();
 			tile->Slot2->SetStaticMesh(Flower);
+			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot2->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
+			tile->Slot3->MeshType = EMeshType::Resource;
+			tile->Slot3 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(Flower);
+			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot3->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
+			tile->Slot4->MeshType = EMeshType::Resource;
+			tile->Slot4 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(Flower);
+			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot4->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
+			tile->Slot5->MeshType = EMeshType::Resource;
+			tile->Slot5 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot5->RegisterComponent();
 			tile->Slot5->SetStaticMesh(Flower);
+			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot5->SetRelativeLocation(tempRelativeLocation);
+
 			break;
 		case Forest:
 			if (!tile->IsMainBase)
 			{
+				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
+				tile->CentralSlot->MeshType = EMeshType::Resource;
+				tile->CentralSlot = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->SetStaticMesh(Tree);
+				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+				tile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
 			}
+
+			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
+			tile->Slot0->MeshType = EMeshType::Resource;
+			tile->Slot0 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(SmallTree);
+			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot0->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
+			tile->Slot1->MeshType = EMeshType::Resource;
+			tile->Slot1 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot1->RegisterComponent();
 			tile->Slot1->SetStaticMesh(SmallTree);
+			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot1->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
+			tile->Slot2->MeshType = EMeshType::Resource;
+			tile->Slot2 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot2->RegisterComponent();
 			tile->Slot2->SetStaticMesh(SmallTree);
+			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot2->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
+			tile->Slot3->MeshType = EMeshType::Resource;
+			tile->Slot3 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(SmallTree);
+			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot3->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
+			tile->Slot4->MeshType = EMeshType::Resource;
+			tile->Slot4 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(SmallTree);
+			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot4->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
+			tile->Slot5->MeshType = EMeshType::Resource;
+			tile->Slot5 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot5->RegisterComponent();
 			tile->Slot5->SetStaticMesh(SmallTree);
+			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot5->SetRelativeLocation(tempRelativeLocation);
 			break;
 		case Hills:
 			if (!tile->IsMainBase)
 			{
+				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
+				tile->CentralSlot->MeshType = EMeshType::Resource;
+				tile->CentralSlot = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->SetStaticMesh(SmallRock);
+				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+				tile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
 			}
+
+			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
+			tile->Slot0->MeshType = EMeshType::Resource;
+			tile->Slot0 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(SmallRock);
+			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot0->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
+			tile->Slot1->MeshType = EMeshType::Resource;
+			tile->Slot1 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot1->RegisterComponent();
 			tile->Slot1->SetStaticMesh(SmallRock);
+			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot1->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
+			tile->Slot2->MeshType = EMeshType::Resource;
+			tile->Slot2 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot2->RegisterComponent();
 			tile->Slot2->SetStaticMesh(SmallRock);
+			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot2->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
+			tile->Slot3->MeshType = EMeshType::Resource;
+			tile->Slot3 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(SmallRock);
+			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot3->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
+			tile->Slot4->MeshType = EMeshType::Resource;
+			tile->Slot4 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(SmallRock);
+			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot4->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
+			tile->Slot5->MeshType = EMeshType::Resource;
+			tile->Slot5 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot5->RegisterComponent();
 			tile->Slot5->SetStaticMesh(SmallRock);
+			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot5->SetRelativeLocation(tempRelativeLocation);
 			break;
 		case Mountains:
 			if (!tile->IsMainBase)
 			{
+				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
+				tile->CentralSlot->MeshType = EMeshType::Resource;
+				tile->CentralSlot = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->SetStaticMesh(Rock);
+				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+				tile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
 			}
+
+			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
+			tile->Slot0->MeshType = EMeshType::Resource;
+			tile->Slot0 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(SmallRock);
-			tile->Slot1->SetStaticMesh(Rock);
-			tile->Slot2->SetStaticMesh(Rock);
+			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot0->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
+			tile->Slot1->MeshType = EMeshType::Resource;
+			tile->Slot1 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot1->RegisterComponent();
+			tile->Slot1->SetStaticMesh(SmallRock);
+			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot1->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
+			tile->Slot2->MeshType = EMeshType::Resource;
+			tile->Slot2 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot2->RegisterComponent();
+			tile->Slot2->SetStaticMesh(SmallRock);
+			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot2->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
+			tile->Slot3->MeshType = EMeshType::Resource;
+			tile->Slot3 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(SmallRock);
+			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot3->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
+			tile->Slot4->MeshType = EMeshType::Resource;
+			tile->Slot4 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(SmallRock);
-			tile->Slot5->SetStaticMesh(Rock);
+			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot4->SetRelativeLocation(tempRelativeLocation);
+
+			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
+			tile->Slot5->MeshType = EMeshType::Resource;
+			tile->Slot5 = NewObject<UResource>(tile, MyGamemode->ResourceBP);
+			tile->Slot5->RegisterComponent();
+			tile->Slot5->SetStaticMesh(SmallRock);
+			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+			tile->Slot5->SetRelativeLocation(tempRelativeLocation);
 			break;
 	}
 }

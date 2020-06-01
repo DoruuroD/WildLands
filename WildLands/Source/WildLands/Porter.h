@@ -25,10 +25,10 @@ class WILDLANDS_API APorter : public ACitizen
 	virtual void BeginPlay() override;
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class ABuilding* GetFrom;
+	class UBuilding* GetFrom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class ABuilding* TransportTo;
+	class UBuilding* TransportTo;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	TEnumAsByte<EPorterState> PorterState;

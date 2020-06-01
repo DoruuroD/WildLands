@@ -4,16 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Building.h"
-#include "LumberjackHut.generated.h"
+#include "PlayerVillage.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class WILDLANDS_API ULumberjackHut : public UBuilding
+class WILDLANDS_API UPlayerVillage : public UBuilding
 {
 	GENERATED_BODY()
-public:
-	// Sets default values for this actor's properties
-	ULumberjackHut();
+		UPlayerVillage();
 };

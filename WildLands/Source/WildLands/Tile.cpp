@@ -13,7 +13,7 @@
 #include "RoadIndicator.h"
 #include "Scout.h"
 #include "Builder.h"
-
+#include "TileMesh.h"
 
 // Sets default values
 ATile::ATile()
@@ -35,7 +35,7 @@ ATile::ATile()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Couldn't read TileMesh"));
 	}
-	SelectionMesh = CreateDefaultSubobject <UStaticMeshComponent>(TEXT("SelectionMesh"));
+	SelectionMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionMesh"));
 	SelectionMesh->SetupAttachment(RootComponent);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset2(TEXT("StaticMesh'/Game/SelectionHesx.SelectionHesx'"));
 	if (MeshAsset2.Succeeded())
@@ -106,31 +106,31 @@ ATile::ATile()
 	MovingRightPosition->SetupAttachment(RootComponent);
 	MovingRightPosition->AddRelativeLocation(FVector(0.f, 70.f, 50.f));
 
-	CentralSlot = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Central slot"));
+	CentralSlot = CreateDefaultSubobject<UTileMesh>(TEXT("Central slot"));
 	CentralSlot->SetupAttachment(RootComponent);
 	CentralSlot->SetRelativeLocation(FVector(0.f, 0.f, 17.f));
-
-	Slot0 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Slot 0"));
+	
+	Slot0 = CreateDefaultSubobject<UTileMesh>(TEXT("Slot 0"));
 	Slot0->SetupAttachment(RootComponent);
 	Slot0->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
 
-	Slot1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Slot 1"));
+	Slot1 = CreateDefaultSubobject<UTileMesh>(TEXT("Slot 1"));
 	Slot1->SetupAttachment(RootComponent);
 	Slot1->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
 
-	Slot2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Slot 2"));
+	Slot2 = CreateDefaultSubobject<UTileMesh>(TEXT("Slot 2"));
 	Slot2->SetupAttachment(RootComponent);
 	Slot2->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
 
-	Slot3 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Slot 3"));
+	Slot3 = CreateDefaultSubobject<UTileMesh>(TEXT("Slot 3"));
 	Slot3->SetupAttachment(RootComponent);
 	Slot3->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
 
-	Slot4 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Slot 4"));
+	Slot4 = CreateDefaultSubobject<UTileMesh>(TEXT("Slot 4"));
 	Slot4->SetupAttachment(RootComponent);
 	Slot4->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
 
-	Slot5 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Slot 5"));
+	Slot5 = CreateDefaultSubobject<UTileMesh>(TEXT("Slot 5"));
 	Slot5->SetupAttachment(RootComponent);
 	Slot5->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
 

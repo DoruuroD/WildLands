@@ -3,23 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
-#include "TileResource.generated.h"
+#include "Components/StaticMeshComponent.h"
+#include "TileMesh.generated.h"
 
 UENUM(BlueprintType)
-enum EResourceType {
-	Woods = 0,
-	Stone,
-	Unknown
+enum EMeshType {
+	Resource = 0,
+	Building,
+	UnknownMeshType
 };
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class WILDLANDS_API UTileResource : public UActorComponent
+class WILDLANDS_API UTileMesh : public UStaticMeshComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UTileResource();
+	UTileMesh();
 
 protected:
 	// Called when the game starts
@@ -29,14 +30,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	TEnumAsByte<EResourceType> ResourceType = Unknown;
+		TEnumAsByte<EMeshType> MeshType = EMeshType::UnknownMeshType;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class UStaticMeshComponent* ResourceMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	int ResourceAmount = 1;
+
 };

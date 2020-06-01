@@ -27,10 +27,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class ABuilding* WorkPlace;
+	class UBuilding* WorkPlace;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	class ABuilding* House;
+	class UBuilding* House;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class AWildLandsPlayerController* MyPlayerController;
