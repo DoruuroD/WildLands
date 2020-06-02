@@ -6,6 +6,14 @@
 #include "GameFramework/Character.h"
 #include "Citizen.generated.h"
 
+UENUM(BlueprintType)
+enum ECitizenType {
+	Citizen=0,
+	Porter,
+	Worker,
+	UnknownCitizenType
+};
+
 UCLASS()
 class WILDLANDS_API ACitizen : public ACharacter
 {
@@ -26,15 +34,22 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
+	TEnumAsByte<ECitizenType> CitizenType;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
 	class UBuilding* WorkPlace;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
 	class UBuilding* House;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Refs)
 	class AWildLandsPlayerController* MyPlayerController;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Variable)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs)
 	class AWildLandsGameMode* MyGamemode;
+
+	UFUNCTION()
+	void SetHouse(class UBuilding* Building);
 };

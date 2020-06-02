@@ -32,6 +32,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
 	TSubclassOf<class UResource> ResourceBP;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class ACitizen> CitizenBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class APorter> PorterBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class AWorker> WorkerBP;
+
 	UFUNCTION()
 	void SetGrid(class AGrid* grid);
 

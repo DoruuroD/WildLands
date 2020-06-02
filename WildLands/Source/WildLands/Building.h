@@ -38,29 +38,9 @@ public:
 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	TSet<class ACitizen*> WorkersInBuilding;
+	TSet<class ACitizen*> CitizensInBuilding;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	int MaximumWorkerCapacity = 2;
+	int MaximumCitizenCapacity = 2;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	TSet<class ACitizen*> CargoPorters;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	float WorkingSpeed = 2.f;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	int ResourceInTheBuilding = 0;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	int MaximumResourceCapacity = 4;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	bool IsWorking = false;
-
-
-	UFUNCTION()
-	void AddWorkerToBuilding(class ACitizen* Worker);
-	UFUNCTION()
-	void RemoveWorkerFromBuilding(class ACitizen* Worker);
 };

@@ -14,4 +14,14 @@ class WILDLANDS_API UPlayerVillage : public UBuilding
 {
 	GENERATED_BODY()
 		UPlayerVillage();
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BuildingVariable")
+	int MaximumNumberOfInhabitants = 4;
+
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs, meta = (AllowPrivateAccess = "true"))
+		class AWildLandsGameMode* MyGamemode;
 };

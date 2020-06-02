@@ -14,7 +14,7 @@
 #include "Scout.h"
 #include "Builder.h"
 #include "TileMesh.h"
-
+#include "PlayerVillage.h"
 // Sets default values
 ATile::ATile()
 {
@@ -500,8 +500,16 @@ TSet<AActor*> ATile::GetNeightbours()
 void ATile::InitializeBase()
 {
 	IsMainBase = true;
-	CentralSlot->SetStaticMesh(MyGamemode->GetVillageMesh());
-}
+
+	
+	FVector tempRelativeLocation = this->CentralSlot->GetRelativeLocation();
+	this->CentralSlot->MeshType = EMeshType::Building;	
+	this->CentralSlot = NewObject<UPlayerVillage>(this, MyGamemode->PlayerVillageBP);
+	this->CentralSlot->RegisterComponent();
+	this->CentralSlot->SetStaticMesh(MyGamemode->GetVillageMesh());
+	this->CentralSlot->AttachToComponent(this->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
+	this->CentralSlot->SetRelativeLocation(tempRelativeLocation);
+}	
 
 void ATile::NullToTile()
 {

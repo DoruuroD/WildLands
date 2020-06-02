@@ -40,23 +40,3 @@ void UBuilding::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 }
 
 
-void UBuilding::AddWorkerToBuilding(ACitizen* Worker)
-{
-	if (WorkersInBuilding.Num() != MaximumWorkerCapacity)
-	{
-		WorkersInBuilding.Add(Worker);
-	}
-	// return bool?
-}
-UFUNCTION()
-void UBuilding::RemoveWorkerFromBuilding(class ACitizen* Worker)
-{
-	if (WorkersInBuilding.Num() != 0 )
-	{
-		WorkersInBuilding.Remove(Worker);
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Could't remove worker from building"));
-	}
-}

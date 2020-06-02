@@ -4,7 +4,7 @@
 #include "WildLandsGameMode.h"
 #include "WildLandsPlayerController.h"
 #include "Citizen.h"
-
+#include "PlayerVillage.h"
 // Sets default values
 ACitizen::ACitizen()
 {
@@ -53,3 +53,8 @@ void ACitizen::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+void ACitizen::SetHouse(UBuilding* Building)
+{
+	House = Building;
+	UE_LOG(LogTemp, Warning, TEXT("House name: %s"), *House->GetName());
+}

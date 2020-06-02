@@ -1,6 +1,7 @@
 // Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
-#include "Engine/World.h"
+
 #include "WildLandsGameMode.h"
+#include "Engine/World.h"
 #include "WildLandsPlayerController.h"
 #include "WildLandsCharacter.h"
 #include "UObject/ConstructorHelpers.h"
