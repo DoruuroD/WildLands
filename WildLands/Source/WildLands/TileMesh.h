@@ -7,7 +7,7 @@
 #include "TileMesh.generated.h"
 
 UENUM(BlueprintType)
-enum EMeshType {
+enum ETileMeshType {
 	Resource = 0,
 	Building,
 	UnknownMeshType
@@ -31,7 +31,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-		TEnumAsByte<EMeshType> MeshType = EMeshType::UnknownMeshType;
+		TEnumAsByte<ETileMeshType> MeshType = ETileMeshType::UnknownMeshType;
 
 
 

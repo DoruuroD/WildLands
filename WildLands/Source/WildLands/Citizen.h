@@ -52,4 +52,6 @@ public:
 
 	UFUNCTION()
 	void SetHouse(class UBuilding* Building);
+
+
 };

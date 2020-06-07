@@ -6,9 +6,13 @@
 #include "TileMesh.h"
 #include "Resource.generated.h"
 
-/**
- * 
- */
+UENUM(BlueprintType)
+enum EResourceType {
+	Forest= 0,
+	StoneDeposit,
+	Meadow,
+	UnknownResource
+};
 UCLASS()
 class WILDLANDS_API UResource : public UTileMesh
 {
@@ -27,5 +31,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-	int ResourceAmount = 1;
+	TEnumAsByte<EResourceType> ResourceType = EResourceType::UnknownResource;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+	int ResourceAmount = 20;
 };

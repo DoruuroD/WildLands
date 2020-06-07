@@ -9,7 +9,7 @@
 UENUM()
 enum EBiom {
 	Grass=0,
-	Forest,
+	Woodlands,
 	Hills,
 	Mountains
 };

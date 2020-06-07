@@ -14,4 +14,7 @@ class WILDLANDS_API AWorker : public ACitizen
 {
 	GENERATED_BODY()
 	
+public:
+	UFUNCTION()
+	void BecomeWorker(class UBuilding* Building);
 };

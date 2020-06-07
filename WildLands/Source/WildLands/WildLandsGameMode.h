@@ -30,7 +30,13 @@ public:
 	TSubclassOf<class ULumberjackHut> LumberjackHutBP;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
-	TSubclassOf<class UResource> ResourceBP;
+	TSubclassOf<class UStoneResource> StoneResourceBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class UWoodResource> WoodResourceBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
+	TSubclassOf<class UMeadowResource> MeadowResourceBP;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BP refs")
 	TSubclassOf<class ACitizen> CitizenBP;

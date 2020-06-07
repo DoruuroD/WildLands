@@ -503,8 +503,8 @@ void ATile::InitializeBase()
 
 	
 	FVector tempRelativeLocation = this->CentralSlot->GetRelativeLocation();
-	this->CentralSlot->MeshType = EMeshType::Building;	
 	this->CentralSlot = NewObject<UPlayerVillage>(this, MyGamemode->PlayerVillageBP);
+	this->CentralSlot->MeshType = ETileMeshType::Building;
 	this->CentralSlot->RegisterComponent();
 	this->CentralSlot->SetStaticMesh(MyGamemode->GetVillageMesh());
 	this->CentralSlot->AttachToComponent(this->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);

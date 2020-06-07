@@ -21,6 +21,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BuildingVariable")
 	int MaximumNumberOfInhabitants = 4;
 
+	UFUNCTION()
+	class AWorker* DelegateToWork(class UBuilding* Building, class ACitizen* Citizen);
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs, meta = (AllowPrivateAccess = "true"))
 		class AWildLandsGameMode* MyGamemode;

@@ -17,13 +17,13 @@ void ABuilder::BeginPlay()
 
 void ABuilder::BuildLumberjacksHut()
 {
-	if (CharacterTile->Biom == EBiom::Forest)
+	if (CharacterTile->Biom == EBiom::Woodlands)
 	{
 		FVector tempRelativeLocation = CharacterTile->CentralSlot->GetRelativeLocation();
 		CharacterTile->CentralSlot->DestroyComponent();
 		
 		CharacterTile->CentralSlot = NewObject<ULumberjackHut>(CharacterTile, MyGamemode->LumberjackHutBP);
-		CharacterTile->CentralSlot->MeshType = EMeshType::Building;
+		CharacterTile->CentralSlot->MeshType = ETileMeshType::Building;
 		CharacterTile->CentralSlot->RegisterComponent();
 		CharacterTile->CentralSlot->AttachToComponent(CharacterTile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 		CharacterTile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
