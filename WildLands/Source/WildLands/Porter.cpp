@@ -17,6 +17,7 @@
 APorter::APorter()
 {
 	PorterState = EPorterState::Unknown;
+	this->CitizenType = ECitizenType::Porter;
 	// Set size for player capsule
 	
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);

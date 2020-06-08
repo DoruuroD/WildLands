@@ -13,8 +13,11 @@ UCLASS()
 class WILDLANDS_API AWorker : public ACitizen
 {
 	GENERATED_BODY()
-	
 public:
+	// Sets default values for this character's properties
+	AWorker();
+
+
 	UFUNCTION()
 	void BecomeWorker(class UBuilding* Building);
 };

@@ -422,7 +422,7 @@ void ATile::SpawnCharacterOnTile(ECharacterType CharacterType)
 	tempT.SetLocation(thisLocation);
 	tempT.SetScale3D(FVector(0.4, 0.4, 0.4));
 
-
+	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	switch (CharacterType)
 	{
 		case ECharacterType::Builder:

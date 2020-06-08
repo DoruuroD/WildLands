@@ -5,6 +5,10 @@
 #include "Building.h"
 #include "GameFramework/Actor.h"
 
+AWorker::AWorker()
+{
+	this->CitizenType = ECitizenType::Worker;
+}
 void AWorker::BecomeWorker(UBuilding* Building)
 {
 	this->CitizenType = ECitizenType::Worker;

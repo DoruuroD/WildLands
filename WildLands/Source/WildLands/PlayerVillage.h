@@ -18,11 +18,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BuildingVariable")
-	int MaximumNumberOfInhabitants = 4;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BuildingVariable")
+	//int MaximumNumberOfInhabitants = 4;
 
 	UFUNCTION()
 	class AWorker* DelegateToWork(class UBuilding* Building, class ACitizen* Citizen);
+
+	UFUNCTION()
+	class APorter* DelegateToTransport(class UBuilding* Building, class ACitizen* Citizen);
+
+	UFUNCTION()
+	void CreateNewCitizen();
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs, meta = (AllowPrivateAccess = "true"))
 		class AWildLandsGameMode* MyGamemode;
