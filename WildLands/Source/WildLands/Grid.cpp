@@ -341,7 +341,7 @@ void AGrid::SetMeshes(class ATile* tile)
 				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
 				tile->CentralSlot = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 				tile->CentralSlot->MeshType = ETileMeshType::Resource;
-				Cast<UMeadowResource>(tile->CentralSlot)->ResourceType = EResourceType::Meadow;
+				Cast<UMeadowResource>(tile->CentralSlot)->ResourceData.ResourceType = EResourceType::Meadow;
 				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 				tile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
@@ -350,7 +350,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
 			tile->Slot0 = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 			tile->Slot0->MeshType = ETileMeshType::Resource;
-			Cast<UMeadowResource>(tile->Slot0)->ResourceType = EResourceType::Meadow;
+			Cast<UMeadowResource>(tile->Slot0)->ResourceData.ResourceType = EResourceType::Meadow;
 			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(Flower);
 			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -359,7 +359,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
 			tile->Slot1 = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 			tile->Slot1->MeshType = ETileMeshType::Resource;
-			Cast<UMeadowResource>(tile->Slot1)->ResourceType = EResourceType::Meadow;
+			Cast<UMeadowResource>(tile->Slot1)->ResourceData.ResourceType = EResourceType::Meadow;
 			tile->Slot1->RegisterComponent();
 			tile->Slot1->SetStaticMesh(Flower);
 			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -368,7 +368,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
 			tile->Slot2 = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 			tile->Slot2->MeshType = ETileMeshType::Resource;
-			Cast<UMeadowResource>(tile->Slot2)->ResourceType = EResourceType::Meadow;
+			Cast<UMeadowResource>(tile->Slot2)->ResourceData.ResourceType = EResourceType::Meadow;
 			tile->Slot2->RegisterComponent();
 			tile->Slot2->SetStaticMesh(Flower);
 			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -377,7 +377,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
 			tile->Slot3 = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 			tile->Slot3->MeshType = ETileMeshType::Resource;
-			Cast<UMeadowResource>(tile->Slot3)->ResourceType = EResourceType::Meadow;
+			Cast<UMeadowResource>(tile->Slot3)->ResourceData.ResourceType = EResourceType::Meadow;
 			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(Flower);
 			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -386,7 +386,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
 			tile->Slot4 = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 			tile->Slot4->MeshType = ETileMeshType::Resource;
-			Cast<UMeadowResource>(tile->Slot4)->ResourceType = EResourceType::Meadow;
+			Cast<UMeadowResource>(tile->Slot4)->ResourceData.ResourceType = EResourceType::Meadow;
 			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(Flower);
 			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -395,7 +395,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
 			tile->Slot5 = NewObject<UMeadowResource>(tile, MyGamemode->MeadowResourceBP);
 			tile->Slot5->MeshType = ETileMeshType::Resource;
-			Cast<UMeadowResource>(tile->Slot5)->ResourceType = EResourceType::Meadow;
+			Cast<UMeadowResource>(tile->Slot5)->ResourceData.ResourceType = EResourceType::Meadow;
 			tile->Slot5->RegisterComponent();
 			tile->Slot5->SetStaticMesh(Flower);
 			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -408,7 +408,7 @@ void AGrid::SetMeshes(class ATile* tile)
 				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
 				tile->CentralSlot = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 				tile->CentralSlot->MeshType = ETileMeshType::Resource;
-				Cast<UWoodResource>(tile->CentralSlot)->ResourceType = EResourceType::Forest;
+				Cast<UWoodResource>(tile->CentralSlot)->ResourceData.ResourceType = EResourceType::Forest;
 				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->SetStaticMesh(Tree);
 				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -418,7 +418,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
 			tile->Slot0 = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 			tile->Slot0->MeshType = ETileMeshType::Resource;
-			Cast<UWoodResource>(tile->Slot0)->ResourceType = EResourceType::Forest;
+			Cast<UWoodResource>(tile->Slot0)->ResourceData.ResourceType = EResourceType::Forest;
 			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(SmallTree);
 			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -427,7 +427,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
 			tile->Slot1 = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 			tile->Slot1->MeshType = ETileMeshType::Resource;
-			Cast<UWoodResource>(tile->Slot1)->ResourceType = EResourceType::Forest;
+			Cast<UWoodResource>(tile->Slot1)->ResourceData.ResourceType = EResourceType::Forest;
 			tile->Slot1->RegisterComponent();
 			tile->Slot1->SetStaticMesh(SmallTree);
 			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -436,7 +436,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
 			tile->Slot2 = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 			tile->Slot2->MeshType = ETileMeshType::Resource;
-			Cast<UWoodResource>(tile->Slot2)->ResourceType = EResourceType::Forest;
+			Cast<UWoodResource>(tile->Slot2)->ResourceData.ResourceType = EResourceType::Forest;
 			tile->Slot2->RegisterComponent();
 			tile->Slot2->SetStaticMesh(SmallTree);
 			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -445,7 +445,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
 			tile->Slot3 = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 			tile->Slot3->MeshType = ETileMeshType::Resource;
-			Cast<UWoodResource>(tile->Slot3)->ResourceType = EResourceType::Forest;
+			Cast<UWoodResource>(tile->Slot3)->ResourceData.ResourceType = EResourceType::Forest;
 			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(SmallTree);
 			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -454,7 +454,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
 			tile->Slot4 = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 			tile->Slot4->MeshType = ETileMeshType::Resource;
-			Cast<UWoodResource>(tile->Slot4)->ResourceType = EResourceType::Forest;
+			Cast<UWoodResource>(tile->Slot4)->ResourceData.ResourceType = EResourceType::Forest;
 			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(SmallTree);
 			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -463,7 +463,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
 			tile->Slot5 = NewObject<UWoodResource>(tile, MyGamemode->WoodResourceBP);
 			tile->Slot5->MeshType = ETileMeshType::Resource;
-			Cast<UWoodResource>(tile->Slot5)->ResourceType = EResourceType::Forest;
+			Cast<UWoodResource>(tile->Slot5)->ResourceData.ResourceType = EResourceType::Forest;
 			tile->Slot5->RegisterComponent();
 			tile->Slot5->SetStaticMesh(SmallTree);
 			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -475,7 +475,7 @@ void AGrid::SetMeshes(class ATile* tile)
 				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
 				tile->CentralSlot = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 				tile->CentralSlot->MeshType = ETileMeshType::Resource;
-				Cast<UStoneResource>(tile->CentralSlot)->ResourceType = EResourceType::StoneDeposit;
+				Cast<UStoneResource>(tile->CentralSlot)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->SetStaticMesh(SmallRock);
 				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -485,7 +485,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
 			tile->Slot0 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot0->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot0)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot0)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot0->RegisterComponent();
 			tile->Slot0->SetStaticMesh(SmallRock);
 			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -494,7 +494,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
 			tile->Slot1 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot1->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot1)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot1)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot1->RegisterComponent();
 			tile->Slot1->SetStaticMesh(SmallRock);
 			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -503,7 +503,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
 			tile->Slot2 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot2->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot2)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot2)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot2->RegisterComponent();
 			tile->Slot2->SetStaticMesh(SmallRock);
 			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -512,7 +512,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
 			tile->Slot3 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot3->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot3)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot3)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot3->RegisterComponent();
 			tile->Slot3->SetStaticMesh(SmallRock);
 			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -521,7 +521,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
 			tile->Slot4 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot4->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot4)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot4)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot4->RegisterComponent();
 			tile->Slot4->SetStaticMesh(SmallRock);
 			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -530,7 +530,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
 			tile->Slot5 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot5->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot5)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot5)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot5->RegisterComponent();
 			tile->Slot5->SetStaticMesh(SmallRock);
 			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
@@ -542,7 +542,7 @@ void AGrid::SetMeshes(class ATile* tile)
 				tempRelativeLocation = tile->CentralSlot->GetRelativeLocation();
 				tile->CentralSlot = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 				tile->CentralSlot->MeshType = ETileMeshType::Resource;
-				Cast<UStoneResource>(tile->CentralSlot)->ResourceType = EResourceType::StoneDeposit;
+				Cast<UStoneResource>(tile->CentralSlot)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 				tile->CentralSlot->RegisterComponent();
 				tile->CentralSlot->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 				tile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
@@ -551,7 +551,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot0->GetRelativeLocation();
 			tile->Slot0 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot0->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot0)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot0)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot0->RegisterComponent();
 			tile->Slot0->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 			tile->Slot0->SetRelativeLocation(tempRelativeLocation);
@@ -559,7 +559,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot1->GetRelativeLocation();
 			tile->Slot1 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot1->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot1)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot1)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot1->RegisterComponent();
 			tile->Slot1->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 			tile->Slot1->SetRelativeLocation(tempRelativeLocation);
@@ -567,7 +567,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot2->GetRelativeLocation();
 			tile->Slot2 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot2->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot2)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot2)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot2->RegisterComponent();
 			tile->Slot2->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 			tile->Slot2->SetRelativeLocation(tempRelativeLocation);
@@ -575,7 +575,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot3->GetRelativeLocation();
 			tile->Slot3 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot3->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot3)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot3)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot3->RegisterComponent();
 			tile->Slot3->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 			tile->Slot3->SetRelativeLocation(tempRelativeLocation);
@@ -583,7 +583,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot4->GetRelativeLocation();
 			tile->Slot4 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot4->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot4)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot4)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot4->RegisterComponent();
 			tile->Slot4->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 			tile->Slot4->SetRelativeLocation(tempRelativeLocation);
@@ -591,7 +591,7 @@ void AGrid::SetMeshes(class ATile* tile)
 			tempRelativeLocation = tile->Slot5->GetRelativeLocation();
 			tile->Slot5 = NewObject<UStoneResource>(tile, MyGamemode->StoneResourceBP);
 			tile->Slot5->MeshType = ETileMeshType::Resource;
-			Cast<UStoneResource>(tile->Slot5)->ResourceType = EResourceType::StoneDeposit;
+			Cast<UStoneResource>(tile->Slot5)->ResourceData.ResourceType = EResourceType::StoneDeposit;
 			tile->Slot5->RegisterComponent();
 			tile->Slot5->AttachToComponent(tile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 			tile->Slot5->SetRelativeLocation(tempRelativeLocation);

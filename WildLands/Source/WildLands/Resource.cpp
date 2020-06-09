@@ -10,7 +10,8 @@ UResource::UResource()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	//ResourceMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ResourceMesh"));
+	ResourceData.ResourceAmount = 20;
+	ResourceData.ResourceType = EResourceType::UnknownResource;
 }
 
 

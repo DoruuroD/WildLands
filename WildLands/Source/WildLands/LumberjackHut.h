@@ -25,6 +25,9 @@ public:
 		TSet<class AWorker*> WorkersInBuilding;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+		float WorkingSpeed = 20;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 		int MaximumWorkerCapacity = 2;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
@@ -32,6 +35,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 		int MaximumPorterCapacity = 2;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+	int ResourceAmountOnTile;
 
 	UFUNCTION(BlueprintCallable)
 		void AddWorker();
@@ -45,7 +51,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void RemovePorter();
 
-
+	UFUNCTION(BlueprintCallable)
+	void GenerateResource() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs, meta = (AllowPrivateAccess = "true"))

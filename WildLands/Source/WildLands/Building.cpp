@@ -39,4 +39,4 @@ void UBuilding::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	// ...
 }
 
-
+ void UBuilding::GenerateResource() { UE_LOG(LogTemp, Warning, TEXT("We are in Building")); }

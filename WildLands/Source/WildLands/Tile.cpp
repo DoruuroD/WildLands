@@ -37,7 +37,7 @@ ATile::ATile()
 	}
 	SelectionMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionMesh"));
 	SelectionMesh->SetupAttachment(RootComponent);
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset2(TEXT("StaticMesh'/Game/SelectionHesx.SelectionHesx'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset2(TEXT("StaticMesh'/Game/TileMeshes/SelectionHesx.SelectionHesx'"));
 	if (MeshAsset2.Succeeded())
 	{
 		SelectionMesh->SetStaticMesh(MeshAsset2.Object);

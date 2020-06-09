@@ -37,10 +37,13 @@ public:
 	TEnumAsByte<EBuildingType> BuildingType = EBuildingType::UnknownBuilding;
 
 
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	TSet<class ACitizen*> CitizensInBuilding;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	int MaximumCitizenCapacity = 2;
 
+
+	virtual void GenerateResource();
 };

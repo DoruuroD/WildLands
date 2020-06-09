@@ -5,6 +5,7 @@
 #include "Tile.h"
 #include "LumberjackHut.h"
 #include "WildLandsGameMode.h"
+#include "Resource.h"
 ABuilder::ABuilder()
 {
 	CharacterType = ECharacterType::Builder;
@@ -17,9 +18,10 @@ void ABuilder::BeginPlay()
 
 void ABuilder::BuildLumberjacksHut()
 {
-	if (CharacterTile->Biom == EBiom::Woodlands)
+	if (CharacterTile->Biom == EBiom::Woodlands && CharacterTile->CentralSlot->MeshType!=ETileMeshType::Building)
 	{
 		FVector tempRelativeLocation = CharacterTile->CentralSlot->GetRelativeLocation();
+		int TempData = Cast<UResource>(CharacterTile->CentralSlot)->ResourceData.ResourceAmount;
 		CharacterTile->CentralSlot->DestroyComponent();
 		
 		CharacterTile->CentralSlot = NewObject<ULumberjackHut>(CharacterTile, MyGamemode->LumberjackHutBP);
@@ -27,6 +29,7 @@ void ABuilder::BuildLumberjacksHut()
 		CharacterTile->CentralSlot->RegisterComponent();
 		CharacterTile->CentralSlot->AttachToComponent(CharacterTile->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform, NAME_None);
 		CharacterTile->CentralSlot->SetRelativeLocation(tempRelativeLocation);
+		Cast<ULumberjackHut>(CharacterTile->CentralSlot)->ResourceAmountOnTile = TempData;
 	}
 	else
 	{

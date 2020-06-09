@@ -50,6 +50,8 @@ void ULumberjackHut::AddWorker()
 						AWorker* WorkerRef = PlayerVillageRef->DelegateToWork(this, Elem);
 						WorkersInBuilding.Add(WorkerRef);
 						Check = true;
+						WorkerRef->BeginWork();
+						
 					}
 					if (Check)
 					{
@@ -57,9 +59,9 @@ void ULumberjackHut::AddWorker()
 					}
 				}
 				
-			}
-			
+			}			
 		}
+		
 
 	}
 	else
@@ -143,6 +145,22 @@ void ULumberjackHut::RemovePorter()
 			PortersInBuilding.Remove(Porter);
 			PlayerVillage->CreateNewCitizen();
 			break;
+		}
+	}
+}
+void ULumberjackHut::GenerateResource()
+{
+	if (ResourceAmountOnTile != 0)
+	{
+		ResourceAmountOnTile--;
+		MyPlayerController->WoodResource++;
+		MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
+	}
+	else
+	{
+		for (auto& WorkerRef: WorkersInBuilding)
+		{
+			WorkerRef->StopWork();
 		}
 	}
 }

@@ -9,8 +9,8 @@ UStoneResource::UStoneResource()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-	ResourceType = EResourceType::StoneDeposit;
-	ResourceAmount = 100;
+	ResourceData.ResourceType = EResourceType::StoneDeposit;
+	ResourceData.ResourceAmount = 100;
 	//ResourceMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ResourceMesh"));
 }
 

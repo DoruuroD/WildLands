@@ -13,7 +13,11 @@ enum ECitizenType {
 	Worker,
 	UnknownCitizenType
 };
-
+UENUM(BlueprintType)
+enum ECitizenAnimationState {
+	Idle,
+	Walk
+};
 UCLASS()
 class WILDLANDS_API ACitizen : public ACharacter
 {
@@ -37,6 +41,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
 	TEnumAsByte<ECitizenType> CitizenType;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
+	TEnumAsByte<ECitizenAnimationState> CitizenAnimationState = ECitizenAnimationState::Idle;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
 	class UBuilding* WorkPlace;

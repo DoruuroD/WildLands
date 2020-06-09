@@ -9,8 +9,9 @@ UMeadowResource::UMeadowResource()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-	ResourceType = EResourceType::Meadow;
-	ResourceAmount = 50;
+	ResourceData.ResourceType = EResourceType::Meadow;
+	ResourceData.ResourceAmount = 50;
+	
 	//ResourceMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ResourceMesh"));
 }
 

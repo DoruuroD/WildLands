@@ -10,6 +10,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSelect);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateCharacterListView);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FObjectUnderTheCursor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSpawnCharacter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdatePlayerWoodAmount);
 
 UENUM()
 enum ESelectionState {
@@ -41,6 +42,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "event")
 	FUpdateCharacterListView UpdateCharacterListView;
 
+	UPROPERTY(BlueprintAssignable, Category = "event")
+	FUpdatePlayerWoodAmount UpdatePlayerWoodAmount;
+
 	// UI
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<class UUserWidget> HUDOverlayAsset;
@@ -65,7 +69,11 @@ public:
 	// Enums
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	TEnumAsByte<ESelectionState> SelectionState;
+	
+	// Resources
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerResources)
+	int WoodResource = 0;
 	// Others
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FString TileNameUnderCursor;
