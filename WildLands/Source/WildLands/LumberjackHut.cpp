@@ -99,6 +99,7 @@ void ULumberjackHut::AddPorter()
 						PorterRef->PorterState = EPorterState::Waiting;
 						PortersInBuilding.Add(PorterRef);
 						Check = true;
+						PorterRef->BeginMovingToWork();
 					}
 					if (Check)
 					{
@@ -152,9 +153,17 @@ void ULumberjackHut::GenerateResource()
 {
 	if (ResourceAmountOnTile != 0)
 	{
-		ResourceAmountOnTile--;
-		MyPlayerController->WoodResource++;
-		MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
+		if (ResourcesInBuilding != MaximumResourceCapacity)
+		{
+			ResourceAmountOnTile--;
+			ResourcesInBuilding++;
+			MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
+		}
+	//	ResourceAmountOnTile--;
+
+
+		//MyPlayerController->WoodResource++;
+		//MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
 	}
 	else
 	{
@@ -162,5 +171,18 @@ void ULumberjackHut::GenerateResource()
 		{
 			WorkerRef->StopWork();
 		}
+	}
+}
+bool ULumberjackHut::LoadResourceOnPorter(float &Amount)
+{
+	if (ResourcesInBuilding != 0)
+	{
+		ResourcesInBuilding--;
+		Amount++;
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }

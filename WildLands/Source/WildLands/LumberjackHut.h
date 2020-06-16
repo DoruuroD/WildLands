@@ -34,10 +34,20 @@ public:
 		TSet<class APorter*> PortersInBuilding;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-		int MaximumPorterCapacity = 2;
+	int MaximumPorterCapacity = 2;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+	int MaximumResourceCapacity = 5;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
+	int ResourcesInBuilding = 0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	int ResourceAmountOnTile;
+
+	UFUNCTION()
+	bool LoadResourceOnPorter(float &amount);
+
 
 	UFUNCTION(BlueprintCallable)
 		void AddWorker();

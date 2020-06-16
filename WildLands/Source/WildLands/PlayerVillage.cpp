@@ -9,7 +9,8 @@
 #include "Worker.h"
 #include "LumberjackHut.h"
 #include "Porter.h"
-
+#include "Tile.h"
+#include "WildLandsPlayerController.h"
 UPlayerVillage::UPlayerVillage()
 {
 	BuildingType = EBuildingType::Village;
@@ -22,6 +23,7 @@ void UPlayerVillage::BeginPlay()
 {
 	Super::BeginPlay();
 	MyGamemode = Cast<AWildLandsGameMode>(GetWorld()->GetAuthGameMode());
+	MyPlayerController = Cast<AWildLandsPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (MyGamemode != nullptr)
 	{				
 		for (int i = 0; i < MaximumCitizenCapacity; i++)
@@ -36,16 +38,35 @@ void UPlayerVillage::CreateNewCitizen()
 
 	FActorSpawnParameters spawnParams;
 
-	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	//spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	FTransform tempT = GetOwner()->GetTransform();
-	FVector CitizenLocation = GetOwner()->GetTransform().GetLocation();
-	CitizenLocation.Z += 87;
-	tempT.SetLocation(CitizenLocation);
+	FVector thisLocation = GetOwner()->GetTransform().GetLocation();
+	thisLocation.Z += 87;
+
 	tempT.SetScale3D(FVector(0.25, 0.25, 0.25));
 
-	CitizenLocation.X = RandomNumber * 5 + CitizenLocation.X;
-	CitizenLocation.Y = RandomNumber * 5 + CitizenLocation.Y;
+	thisLocation.X = RandomNumber * 5 + thisLocation.X;
+	thisLocation.Y = RandomNumber * 5 + thisLocation.Y;
+	tempT.SetLocation(thisLocation);
+
 	ACitizen* Citizen = GetWorld()->SpawnActor<ACitizen>(MyGamemode->CitizenBP, tempT, spawnParams);
+	int TempCounter = 0;
+	while (Citizen == nullptr)
+	{
+		thisLocation.X = thisLocation.X - RandomNumber * 5;
+		thisLocation.Y = thisLocation.Y - RandomNumber * 5;
+		RandomNumber = rand() % 20 + (-9);
+		thisLocation.X = RandomNumber * 5 + thisLocation.X;
+		thisLocation.Y = RandomNumber * 5 + thisLocation.Y;
+
+		tempT.SetLocation(thisLocation);
+		Citizen = GetWorld()->SpawnActor<ACitizen>(MyGamemode->CitizenBP, tempT, spawnParams);
+		TempCounter++;
+		if (TempCounter > 300)
+		{
+			UE_LOG(LogTemp, Fatal, TEXT("Cant find place to spawn worker!"));
+		}
+	}
 	if (Citizen)
 	{
 		Citizen->CitizenType = ECitizenType::Citizen;
@@ -60,7 +81,7 @@ AWorker* UPlayerVillage::DelegateToWork(UBuilding* Building, ACitizen* Citizen)
 	{
 		FActorSpawnParameters spawnParams;
 
-		spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		//spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		FTransform tempT = Building->GetOwner()->GetTransform();
 		FVector thisLocation = Building->GetOwner()->GetTransform().GetLocation();
 		thisLocation.Z += 87;
@@ -72,7 +93,25 @@ AWorker* UPlayerVillage::DelegateToWork(UBuilding* Building, ACitizen* Citizen)
 
 		tempT.SetLocation(thisLocation);
 
+		
 		AWorker* Worker = GetWorld()->SpawnActor<AWorker>(MyGamemode->WorkerBP, tempT, spawnParams);
+		int TempCounter = 0;
+		while (Worker == nullptr)
+		{
+			thisLocation.X = thisLocation.X - RandomNumber * 5;
+			thisLocation.Y = thisLocation.Y - RandomNumber * 5;
+			RandomNumber = rand() % 20 + (-9);
+			thisLocation.X = RandomNumber * 5 + thisLocation.X;
+			thisLocation.Y = RandomNumber * 5 + thisLocation.Y;
+
+			tempT.SetLocation(thisLocation);
+			Worker = GetWorld()->SpawnActor<AWorker>(MyGamemode->WorkerBP, tempT, spawnParams);
+			TempCounter++;
+			if (TempCounter > 300)
+			{
+				UE_LOG(LogTemp, Fatal, TEXT("Cant find place to spawn worker!"));
+			}
+		}
 		if (Worker)
 		{
 			Worker->CitizenType = ECitizenType::Worker;
@@ -100,12 +139,12 @@ APorter* UPlayerVillage::DelegateToTransport(UBuilding* Building, ACitizen* Citi
 	{
 		FActorSpawnParameters spawnParams;
 
-		spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-		FTransform tempT = Building->GetOwner()->GetTransform();
-		FVector thisLocation = Building->GetOwner()->GetTransform().GetLocation();
+		//spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		FTransform tempT = this->GetOwner()->GetTransform();
+		FVector thisLocation = this->GetOwner()->GetTransform().GetLocation();
 		thisLocation.Z += 67;
 		//tempT.SetLocation(thisLocation);
-		tempT.SetScale3D(FVector(0.1, 0.1, 0.1));
+		tempT.SetScale3D(FVector(0.25, 0.25, 0.25));
 
 
 		thisLocation.X = RandomNumber * 5 + thisLocation.X;
@@ -114,6 +153,23 @@ APorter* UPlayerVillage::DelegateToTransport(UBuilding* Building, ACitizen* Citi
 		tempT.SetLocation(thisLocation);
 
 		APorter* Porter = GetWorld()->SpawnActor<APorter>(MyGamemode->PorterBP, tempT, spawnParams);
+		int TempCounter = 0;
+		while (Porter == nullptr)
+		{
+			thisLocation.X = thisLocation.X - RandomNumber * 5;
+			thisLocation.Y = thisLocation.Y - RandomNumber * 5;
+			RandomNumber = rand() % 20 + (-9);
+			thisLocation.X = RandomNumber * 5 + thisLocation.X;
+			thisLocation.Y = RandomNumber * 5 + thisLocation.Y;
+
+			tempT.SetLocation(thisLocation);
+			Porter = GetWorld()->SpawnActor<APorter>(MyGamemode->PorterBP, tempT, spawnParams);
+			TempCounter++;
+			if (TempCounter > 300)
+			{
+				UE_LOG(LogTemp, Fatal, TEXT("Cant find place to spawn worker!"));
+			}
+		}
 		if (Porter)
 		{
 			Porter->CitizenType = ECitizenType::Porter;
@@ -122,6 +178,11 @@ APorter* UPlayerVillage::DelegateToTransport(UBuilding* Building, ACitizen* Citi
 			CitizensInBuilding.Add(Porter);
 			Porter->SetHouse(this);
 			Porter->WorkPlace = Building;
+			Porter->CharacterTile = Cast<ATile>(this->GetOwner());
+			if (Porter->CharacterTile == nullptr)
+			{
+				UE_LOG(LogTemp, Fatal , TEXT("Porter->CharacterTile = Cast<ATile>(Building->GetOwner()) failed"))
+			}
 
 			Citizen->Destroy();
 			this->CitizensInBuilding.Remove(Citizen);
@@ -134,4 +195,11 @@ APorter* UPlayerVillage::DelegateToTransport(UBuilding* Building, ACitizen* Citi
 
 	}
 	return nullptr;
+}
+void UPlayerVillage::UnloadResourceFromPorter(float &Amount)
+{
+
+	MyPlayerController->WoodResource++;
+	MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
+	Amount--;
 }

@@ -29,8 +29,12 @@ public:
 
 	UFUNCTION()
 	void CreateNewCitizen();
+	UFUNCTION()
+	void UnloadResourceFromPorter(float &Amount);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs, meta = (AllowPrivateAccess = "true"))
 		class AWildLandsGameMode* MyGamemode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Refs, meta = (AllowPrivateAccess = "true"))
+		class AWildLandsPlayerController* MyPlayerController;
 };
