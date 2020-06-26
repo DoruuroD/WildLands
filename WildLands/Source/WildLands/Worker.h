@@ -19,6 +19,7 @@ class WILDLANDS_API AWorker : public ACitizen
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 public:
 	// Sets default values for this character's properties
 	AWorker();
@@ -39,4 +40,6 @@ public:
 
 	UFUNCTION()
 	void Working();
+
+
 };

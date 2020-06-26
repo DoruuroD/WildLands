@@ -14,7 +14,7 @@ AWorker::AWorker()
 void AWorker::BeginPlay()
 {
 	Super::BeginPlay();
-
+	UpdateProgressBar.Broadcast();
 }
 void AWorker::BecomeWorker(UBuilding* Building)
 {
@@ -36,7 +36,8 @@ void AWorker::BeginWork()
 		ULumberjackHut* BuildingRef = Cast<ULumberjackHut>(WorkPlace);
 		if (BuildingRef != nullptr)
 		{
-			GetWorldTimerManager().SetTimer(Timer, this, &AWorker::Working, BuildingRef->WorkingSpeed-15, true, BuildingRef->WorkingSpeed-15);
+			timerRate = BuildingRef->WorkingSpeed;
+			GetWorldTimerManager().SetTimer(Timer, this, &AWorker::Working, BuildingRef->WorkingSpeed, true, BuildingRef->WorkingSpeed);
 		}
 		else
 		{
@@ -49,9 +50,29 @@ void AWorker::BeginWork()
 		break;
 	}
 }
+void AWorker::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	switch (WorkerStatus)
+	{
+		case EWorkerStatus::Working:
+		{
+			ElapsedTimeInLoop = GetWorldTimerManager().GetTimerElapsed(Timer);
+
+			BarPercent = ElapsedTimeInLoop / timerRate;
+			UpdateProgressBar.Broadcast();
+				
+			
+			break;
+		}
+	}
+}
 void AWorker::StopWork()
 {
 	WorkerStatus = EWorkerStatus::WaitingForWork;
+	BarPercent = 0;
+	UpdateProgressBar.Broadcast();
 }
 void AWorker::Working()
 {

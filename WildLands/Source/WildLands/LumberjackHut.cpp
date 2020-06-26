@@ -159,11 +159,14 @@ void ULumberjackHut::GenerateResource()
 			ResourcesInBuilding++;
 			MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
 		}
-	//	ResourceAmountOnTile--;
+		else
+		{
+			for (auto& WorkerRef : WorkersInBuilding)
+			{
+				WorkerRef->StopWork();
+			}
+		}
 
-
-		//MyPlayerController->WoodResource++;
-		//MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
 	}
 	else
 	{
@@ -178,11 +181,20 @@ bool ULumberjackHut::LoadResourceOnPorter(float &Amount)
 	if (ResourcesInBuilding != 0)
 	{
 		ResourcesInBuilding--;
+		SendToWork();
 		Amount++;
+		MyPlayerController->UpdatePlayerWoodAmount.Broadcast();
 		return true;
 	}
 	else
 	{
 		return false;
+	}
+}
+void ULumberjackHut::SendToWork()
+{
+	for (auto& WorkerRef : WorkersInBuilding)
+	{
+		WorkerRef->WorkerStatus = EWorkerStatus::Working;
 	}
 }

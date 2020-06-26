@@ -54,6 +54,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PorterVariable)
 	float UnloadingSpeed = 2;
 
+
+
 	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PorterVariable)
 	//FTransform PorterDestination;
 

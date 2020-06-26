@@ -476,22 +476,13 @@ AWildLandsCharacter* ATile::GetFirstCharacter()
 }
 void ATile::MoveCharacter(AWildLandsCharacter* character)
 {
-	MyPlayerController->SelectedCharacter->Road = MyPlayerController->FindRoad(MyPlayerController->SelectedTile, this);
+	if (character->CharacterState != ECharacterState::TakingAction)
+	{
+		MyPlayerController->SelectedCharacter->Road = MyPlayerController->FindRoad(MyPlayerController->SelectedTile, this);
+		character->MoveCharacterDelegate.ExecuteIfBound(this);
+		MyPlayerController->RoadIndicator->ShowRoad(character, character->Road, true);
 
-
-	//	FVector thisTileLocation = RootComponent->GetComponentLocation();
-//	thisTileLocation.Z += 50.f;
-
-	character->MoveCharacterDelegate.ExecuteIfBound(this);
-	
-	MyPlayerController->RoadIndicator->ShowRoad(character, character->Road, true);
-	/*
-	MyPlayerController->SelectedTile->WildLandsCharacters.Remove(MyPlayerController->SelectedCharacter);
-	this->WildLandsCharacters.Add(MyPlayerController->SelectedCharacter);
-	MyPlayerController->SelectedTile = this;
-	
-	MyPlayerController->SelectedCharacter->SetActorLocation(thisTileLocation);
-	*/
+	}
 }
 TSet<AActor*> ATile::GetNeightbours()
 {

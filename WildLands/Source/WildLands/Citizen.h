@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Citizen.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateProgressBar);
+
 UENUM(BlueprintType)
 enum ECitizenType {
 	Citizen=0,
@@ -45,6 +47,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
 	TEnumAsByte<ECitizenAnimationState> CitizenAnimationState = ECitizenAnimationState::Idle;
 
+	UPROPERTY(BlueprintAssignable, Category = "event")
+	FUpdateProgressBar UpdateProgressBar;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
 	class UBuilding* WorkPlace;
 
@@ -59,6 +64,12 @@ public:
 
 	UFUNCTION()
 	void SetHouse(class UBuilding* Building);
+
+	float timerRate = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CitizenVariable)
+		float BarPercent = 0;
+	float ElapsedTimeInLoop = 0;
 
 
 };

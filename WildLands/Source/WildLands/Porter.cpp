@@ -19,6 +19,7 @@
 #include "LumberjackHut.h"
 #include "TimerManager.h"
 #include "PlayerVillage.h"
+#include <cmath>
 
 APorter::APorter()
 {
@@ -175,10 +176,20 @@ void APorter::Tick(float DeltaSeconds)
 		}
 		case EPorterState::Loading:
 		{
-			break;
+			ElapsedTimeInLoop = GetWorldTimerManager().GetTimerElapsed(Timer);
+
+			BarPercent = ElapsedTimeInLoop / LoadingSpeed;
+			UpdateProgressBar.Broadcast();
+
+
+			break;			
 		}
 		case EPorterState::Unloading:
 		{
+			ElapsedTimeInLoop = GetWorldTimerManager().GetTimerElapsed(Timer);
+
+			BarPercent = ElapsedTimeInLoop / UnloadingSpeed;
+			UpdateProgressBar.Broadcast();
 			break;
 		}
 		default:
@@ -191,6 +202,9 @@ void APorter::BeginPlay()
 	Super::BeginPlay();
 	MyGamemode = Cast<AWildLandsGameMode>(GetWorld()->GetAuthGameMode());
 	MyPlayerController = Cast<AWildLandsPlayerController>(GetWorld()->GetFirstPlayerController());
+
+	// turnig off visibility
+	
 	
 }
 void APorter::BeginMovingToWork()
@@ -212,7 +226,7 @@ void APorter::BeginMovingToWork()
 	GetCharacterMovement()->MaxWalkSpeed = Distance / WalkingTime;
 
 	PorterMovingType = EPorterMovingTypes::MovingToProductionBuilding;
-
+	UpdateProgressBar.Broadcast();
 }
 
 
@@ -224,7 +238,7 @@ void APorter::LoadResource()
 	{
 		UE_LOG(LogTemp, Fatal, TEXT("FromMovingToLoadingCargo cast GetFrom to HutRef failed"));
 	}
-	if (HutRef->ResourcesInBuilding != 0 && CargoAmount != MaxCargo)
+	if ( CargoAmount != MaxCargo)
 	{
 		bool Check = HutRef->LoadResourceOnPorter(CargoAmount);
 		if (!Check)
@@ -239,11 +253,6 @@ void APorter::LoadResource()
 				GetWorldTimerManager().ClearTimer(Timer);
 				FromLoadingCargoToMoving();
 			}
-			else
-			{
-				GetWorldTimerManager().ClearTimer(Timer);
-				FromLoadingCargoToWaitingForWork();
-			}
 		}
 	}
 	
@@ -257,16 +266,16 @@ void APorter::UnloadResource()
 	}
 
 
+
+	if (CargoAmount != 0)
+	{
+		VillageRef->UnloadResourceFromPorter(this->CargoAmount);
+	}
 	if (CargoAmount == 0)
 	{
 		GetWorldTimerManager().ClearTimer(Timer);
 		FromUnloadingCargoToMoving();
 	}
-	else
-	{
-		VillageRef->UnloadResourceFromPorter(this->CargoAmount);
-	}
-
 }
 // Transitions
 void APorter::FromMovingToLoadingCargo()
@@ -283,6 +292,11 @@ void APorter::FromMovingToLoadingCargo()
 			if (HutRef->ResourcesInBuilding != 0)
 			{
 				GetWorldTimerManager().SetTimer(Timer, this, &APorter::LoadResource, this->LoadingSpeed, this->LoadingSpeed);
+			}
+			else
+			{
+				GetWorldTimerManager().ClearTimer(Timer);
+				FromMovingToWaitingForWork();
 			}
 			break;
 		}
@@ -315,7 +329,8 @@ void APorter::WaitForResource()
 }
 void APorter::FromMovingToWaitingForWork() 
 {
-
+	PorterState = EPorterState::Waiting;
+	GetWorldTimerManager().SetTimer(Timer, this, &APorter::WaitForResource, 1.f, 1.f);
 }
 
 void APorter::FromMovingToUnloadingCargo() 
@@ -362,12 +377,14 @@ void APorter::FromLoadingCargoToMoving()
 		NextTile = Cast<ATile>(TransportTo->GetOwner());
 	}
 	PorterState = EPorterState::Moving;
+	UpdateProgressBar.Broadcast();
 }
 
 void APorter::FromLoadingCargoToWaitingForWork() 
 {
 	PorterState = EPorterState::Waiting;
 	GetWorldTimerManager().SetTimer(Timer, this, &APorter::WaitForResource, 1.f, 1.f);
+	UpdateProgressBar.Broadcast();
 }
 
 void APorter::FromWaitingForWorkToMoving() 
@@ -407,4 +424,5 @@ void APorter::FromUnloadingCargoToMoving()
 	NextTile = Road[0];
 	NextTileIndex = 0;
 	PorterState = EPorterState::Moving;
+	UpdateProgressBar.Broadcast();
 }

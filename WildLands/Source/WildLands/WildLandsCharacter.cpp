@@ -89,7 +89,7 @@ void AWildLandsCharacter::Tick(float DeltaSeconds)
 
 
 
-	if (RoadToTake == true)
+	if (RoadToTake == true && CharacterState == ECharacterState::MovingCharacter)
 	{
 		if (Road.Num() != 0)
 		{
@@ -142,6 +142,24 @@ void AWildLandsCharacter::Tick(float DeltaSeconds)
 			temp.Z += 100.f;
 			this->SetActorLocation(temp);
 			Road.Empty();
+		}
+	}
+
+	if (RoadToTake == true && CharacterState != ECharacterState::MovingCharacter)
+	{
+		CharacterState = ECharacterState::MovingCharacter;
+	}
+
+	switch (CharacterState)
+	{
+		case ECharacterState::TakingAction:
+		{
+			ElapsedTimeInLoop = GetWorldTimerManager().GetTimerElapsed(Timer);
+
+			BarPercent = ElapsedTimeInLoop / 5.f;
+			UpdateCharacterProgressBar.Broadcast();
+
+			break;
 		}
 	}
 }
@@ -208,4 +226,13 @@ void AWildLandsCharacter::Moving()
 {
 	IsMoving = false;
 	UE_LOG(LogTemp, Warning, TEXT("Moving - done"));
+}
+void AWildLandsCharacter::StopMoving()
+{
+	IsMoving = false;
+	RoadToTake = false;
+	FVector temp = CharacterTile->GetActorLocation();
+	temp.Z += 100.f;
+	this->SetActorLocation(temp);
+	Road.Empty();
 }

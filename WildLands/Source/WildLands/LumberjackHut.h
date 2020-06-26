@@ -25,7 +25,7 @@ public:
 		TSet<class AWorker*> WorkersInBuilding;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
-		float WorkingSpeed = 20;
+		float WorkingSpeed = 5;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 		int MaximumWorkerCapacity = 2;
@@ -45,6 +45,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	int ResourceAmountOnTile;
 
+	UFUNCTION()
+	void SendToWork();
 	UFUNCTION()
 	bool LoadResourceOnPorter(float &amount);
 

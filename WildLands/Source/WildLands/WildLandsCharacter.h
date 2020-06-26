@@ -7,6 +7,14 @@
 #include "WildLandsCharacter.generated.h"
 
 DECLARE_DELEGATE_OneParam(FMoveCharacter, class ATile*);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateCharacterProgressBar);
+
+UENUM(BlueprintType)
+enum ECharacterState {
+	MovingCharacter,
+	IdleCharacter,
+	TakingAction
+};
 
 UENUM(BlueprintType)
 enum ECharacterType {
@@ -36,8 +44,15 @@ public:
 	/** Returns CursorToWorld subobject **/
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = Variable)
+	TEnumAsByte<ECharacterState> CharacterState = ECharacterState::IdleCharacter;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Variable)
 	TEnumAsByte<ECharacterType> CharacterType;
+
+
+	UPROPERTY(BlueprintAssignable, Category = "event")
+	FUpdateCharacterProgressBar UpdateCharacterProgressBar;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = variable)
 	TArray<class ATile*> Road;
@@ -78,6 +93,16 @@ public:
 	void MoveToTile(ATile* destination);
 	UFUNCTION()
 	void Moving();
+	UFUNCTION()
+	void StopMoving();
+
+	float timerRate = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = CharacterVariable)
+	float BarPercent = 0;
+	float ElapsedTimeInLoop = 0;
+
+	FTimerHandle Timer;
 
 private:
 
@@ -93,6 +118,7 @@ private:
 	FRotator Rotation;
 	UPROPERTY(VisibleAnywhere)
 	float Distance;
+protected:
 	UPROPERTY(VisibleAnywhere)
 	bool RoadToTake;
 };
